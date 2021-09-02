@@ -12,23 +12,29 @@
           <div>{{ data.content }}</div>
         </div>
         <div class="slidercontroler">
-          <input
-            type="radio"
-            name="control"
-            :checked="data.show"
-            v-for="(data, index) in datas"
-            :key="index"
-            @click="controlMove(index)"
-          />
+          <label class="movebox" v-for="(data, index) in datas" :key="index">
+            <input
+              type="radio"
+              name="control"
+              class="test"
+              :checked="data.show"
+              @click="controlMove(index)"
+            />
+          </label>
         </div>
-        <button class="sliderbtn left" @click="leftMove">left</button>
-        <button class="sliderbtn right" @click="rightMove">right</button>
+        <button class="sliderbtn left" @click="leftMove">
+          <i class="iconify" data-icon="mdi:chevron-left" />
+        </button>
+        <button class="sliderbtn right" @click="rightMove">
+          <i class="iconify" data-icon="mdi:chevron-right" />
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Options } from "vue-class-component";
+
 @Options({
   props: {
     //false in true out
@@ -42,7 +48,7 @@ import { Vue, Options } from "vue-class-component";
     },
     autoslide: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     autoTime: {
       type: Number,
@@ -73,18 +79,22 @@ import { Vue, Options } from "vue-class-component";
   },
   methods: {
     leftMove() {
+      this.datas[this.nowShow - 1].show = false;
       if (this.nowShow - 1 > 0) {
-        this.datas[this.nowShow - 1].show = false;
         this.nowShow--;
-        this.datas[this.nowShow - 1].show = true;
+      } else {
+        this.nowShow = this.dataLength;
       }
+      this.datas[this.nowShow - 1].show = true;
     },
     rightMove() {
+      this.datas[this.nowShow - 1].show = false;
       if (this.nowShow < this.dataLength) {
-        this.datas[this.nowShow - 1].show = false;
         this.nowShow++;
-        this.datas[this.nowShow - 1].show = true;
+      } else {
+        this.nowShow = 1;
       }
+      this.datas[this.nowShow - 1].show = true;
     },
     controlMove(now: number) {
       this.nowShow = now + 1;
@@ -119,6 +129,16 @@ export default class Slider extends Vue {}
   }
   &.right {
     right: 80px;
+  }
+  border: none;
+  background: none;
+  & > * {
+    width: 36px;
+    height: 36px;
+    transition: color 0.5s;
+    &:hover {
+      color: $white;
+    }
   }
 }
 .sliderMain {
@@ -168,12 +188,32 @@ export default class Slider extends Vue {}
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 0;
-  /* & > input {
-    &:checked {
-      margin-left: 25px;
-      border: 1px solid blue;
-    }
-  } */
+  bottom: 10px;
+  display: flex;
+  .movebox + .test:checked {
+    /* display: black; */
+
+    background: $white;
+    width: 15px;
+    height: 15px;
+  }
+}
+.movebox {
+  width: 10px;
+  height: 10px;
+  background: $black;
+  border-radius: 20px;
+  margin: 3px 5px 0;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.7s;
+  &:hover {
+    background: $white;
+    width: 15px;
+    height: 15px;
+  }
+}
+.test {
+  display: none;
 }
 </style>

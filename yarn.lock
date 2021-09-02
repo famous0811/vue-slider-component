@@ -935,6 +935,18 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@iconify/iconify@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@iconify/iconify/-/iconify-2.0.4.tgz#72bff5fe1e7c71a2ac6bd7a2f74f933b3920526c"
+  integrity sha512-ejk4gWp9STQcivh1h5VKyuLpOOWefrC9WcHUW5YQBXqsT0NBpfqei8X4rCXasnNlbJSiK8IvIJZTfKtQ/56JIw==
+  dependencies:
+    cross-fetch "^3.0.6"
+
+"@iconify/vue@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/vue/-/vue-3.0.0.tgz#7e2fa8a515aea4e50313d41acdb3cc0b3492829d"
+  integrity sha512-7heVMHkpB3d7l+/ofAQ+f9k5mETi/FWEnI5dXFQqsDmc/yuO2Nz5D9XkSDvO1b6TRVawf/kleN8JXRaClTM4nQ==
+
 "@intervolga/optimize-cssnano-plugin@^1.0.5":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@intervolga/optimize-cssnano-plugin/-/optimize-cssnano-plugin-1.0.6.tgz#be7c7846128b88f6a9b1d1261a0ad06eb5c0fdf8"
@@ -3138,6 +3150,13 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     ripemd160 "^2.0.0"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+cross-fetch@^3.0.6:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.4.tgz#9723f3a3a247bf8b89039f3a380a9244e8fa2f39"
+  integrity sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==
+  dependencies:
+    node-fetch "2.6.1"
 
 cross-spawn@^3.0.0:
   version "3.0.1"
@@ -6405,6 +6424,11 @@ no-case@^2.2.0:
   integrity sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==
   dependencies:
     lower-case "^1.1.1"
+
+node-fetch@2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-forge@^0.10.0:
   version "0.10.0"
