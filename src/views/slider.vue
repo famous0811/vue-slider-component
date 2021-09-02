@@ -2,17 +2,27 @@
   <div class="sliderWrap">
     <div class="slider">
       <div class="sliderMain">
-        <button class="sliderbtn left">left</button>
         <div
           v-for="(data, index) in datas"
           :key="index"
-          :class="data.show ? 'active' : ''"
+          :class="'active' + nowShow"
           class="sliderContents"
         >
           <h4>{{ data.title }}</h4>
           <div>{{ data.content }}</div>
         </div>
-        <button class="sliderbtn right">right</button>
+        <div class="slidercontroler">
+          <input
+            type="radio"
+            name="control"
+            :checked="data.show"
+            v-for="(data, index) in datas"
+            :key="index"
+            @click="controlMove(index)"
+          />
+        </div>
+        <button class="sliderbtn left" @click="leftMove">left</button>
+        <button class="sliderbtn right" @click="rightMove">right</button>
       </div>
     </div>
   </div>
@@ -30,6 +40,14 @@ import { Vue, Options } from "vue-class-component";
       type: Boolean,
       default: true,
     },
+    autoslide: {
+      type: Boolean,
+      default: true,
+    },
+    autoTime: {
+      type: Number,
+      default: 3000,
+    },
   },
   data() {
     return {
@@ -41,11 +59,36 @@ import { Vue, Options } from "vue-class-component";
         { title: "main title5", content: "hello world", src: "", show: false },
         { title: "main title6", content: "hello world", src: "", show: false },
       ],
+      nowShow: 2,
       dataLength: 0,
     };
   },
   created() {
+    if (this.autoslide) {
+      setInterval(() => {
+        this.rightMove();
+      }, this.autoTime);
+    }
     this.dataLength = this.datas.length;
+  },
+  methods: {
+    leftMove() {
+      if (this.nowShow - 1 > 0) {
+        this.datas[this.nowShow - 1].show = false;
+        this.nowShow--;
+        this.datas[this.nowShow - 1].show = true;
+      }
+    },
+    rightMove() {
+      if (this.nowShow < this.dataLength) {
+        this.datas[this.nowShow - 1].show = false;
+        this.nowShow++;
+        this.datas[this.nowShow - 1].show = true;
+      }
+    },
+    controlMove(now: number) {
+      this.nowShow = now + 1;
+    },
   },
 })
 export default class Slider extends Vue {}
@@ -72,10 +115,10 @@ export default class Slider extends Vue {}
   transform: translateY(-50%);
   cursor: pointer;
   &.left {
-    left: 20px;
+    left: 80px;
   }
   &.right {
-    right: 20px;
+    right: 80px;
   }
 }
 .sliderMain {
@@ -96,11 +139,41 @@ export default class Slider extends Vue {}
   flex-direction: column;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s;
-  /* transform: translateX(-800px); */
-  /* ${({ move }) => css`
-    transform: translateX(${move});
-  `}; */
-  /* background: red; */
+  transition: transform 0.8s;
+  &.active1 {
+    transform: translateX(0);
+  }
+  &.active2 {
+    transform: translateX(-100%);
+  }
+  &.active3 {
+    transform: translateX(-200%);
+  }
+  &.active4 {
+    transform: translateX(-300%);
+  }
+  &.active5 {
+    transform: translateX(-400%);
+  }
+  &.active6 {
+    transform: translateX(-500%);
+  }
+
+  /* transform:translateX(-100%);
+  transform:translateX(-300%);
+  transform:translateX(-400%);
+  transform:translateX(-500%); */
+}
+.slidercontroler {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  /* & > input {
+    &:checked {
+      margin-left: 25px;
+      border: 1px solid blue;
+    }
+  } */
 }
 </style>
