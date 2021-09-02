@@ -12,15 +12,20 @@
           <div>{{ data.content }}</div>
         </div>
         <div class="slidercontroler">
-          <label class="movebox" v-for="(data, index) in datas" :key="index">
+          <div v-for="(data, index) in datas" :key="index">
             <input
               type="radio"
               name="control"
-              class="test"
+              :id="'controler' + index"
               :checked="data.show"
               @click="controlMove(index)"
+              class="asdf"
+              style="display: none"
             />
-          </label>
+            <label :for="'controler' + index">
+              <div class="movebox" />
+            </label>
+          </div>
         </div>
         <button class="sliderbtn left" @click="leftMove">
           <i class="iconify" data-icon="mdi:chevron-left" />
@@ -188,15 +193,8 @@ export default class Slider extends Vue {}
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 10px;
+  bottom: 15px;
   display: flex;
-  .movebox + .test:checked {
-    /* display: black; */
-
-    background: $white;
-    width: 15px;
-    height: 15px;
-  }
 }
 .movebox {
   width: 10px;
@@ -209,11 +207,11 @@ export default class Slider extends Vue {}
   transition: all 0.7s;
   &:hover {
     background: $white;
-    width: 15px;
-    height: 15px;
+    transform: scale(1.5);
   }
 }
-.test {
-  display: none;
+.asdf:checked + label > .movebox {
+  background: $white;
+  transform: scale(1.5);
 }
 </style>
