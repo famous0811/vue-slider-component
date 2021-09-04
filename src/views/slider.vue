@@ -183,11 +183,6 @@ export default class Slider extends Vue {}
   &.active6 {
     transform: translateX(-500%);
   }
-
-  /* transform:translateX(-100%);
-  transform:translateX(-300%);
-  transform:translateX(-400%);
-  transform:translateX(-500%); */
 }
 .slidercontroler {
   position: absolute;

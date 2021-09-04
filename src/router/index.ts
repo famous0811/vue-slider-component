@@ -6,6 +6,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "slider",
     component: Slider,
   },
+  {
+    path: "/select",
+    name: "select",
+    component: () => import("../views/select.vue"),
+  },
 ];
 
 const router = createRouter({
